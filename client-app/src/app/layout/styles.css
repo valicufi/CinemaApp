@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+*{
+  font-family: quicksand;
+  scroll-behavior: smooth;
+}
+
+body {
+    background-color: #eaeaea;
+}
+
+.ui .label{
+  /* background-color: red !important; */
+  border-radius: 5px !important;
+  margin: 0.1em !important;;
+}
+
+
+
+/* .ui.top.fixed.menu {
+  
+} */
+
+.ui.LogIn.name.item.menu{
+  background-color: tomato;
+}
+
+.ui.loginn{
+  background-color: red !important;
+}
+
+
+
