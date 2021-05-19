@@ -8,9 +8,10 @@ interface Props{
     activity: Activity | undefined;
     closeForm:()=>void;
     createOrEdit: (activity: Activity) => void;
+    submitting : boolean;
 }
 
-function ActivityForm({activity:selectActivity,closeForm,createOrEdit}:Props) {
+function ActivityForm({activity:selectActivity,closeForm,createOrEdit,submitting}:Props) {
 
     const initialState = selectActivity ?? {
         id: '',
@@ -44,7 +45,7 @@ function ActivityForm({activity:selectActivity,closeForm,createOrEdit}:Props) {
                 <Form.Input placeholder='Imdb' value={activity.imdb} name='imdb' onChange={handleInputChange} />
                 <Form.Input placeholder='Quality' value={activity.quality} name='quality' onChange={handleInputChange} />
                 <Form.Input placeholder='Duration' value={activity.duration} name='duration' onChange={handleInputChange} />
-                <Button floated='right' positive type='submit' content='Submit' />
+                <Button loading={submitting} floated='right' positive type='submit' content='Submit' />
                 <Button onClick={closeForm} floated='right'  type='button' content='Cancel' />
             </Form>
         </Segment>
