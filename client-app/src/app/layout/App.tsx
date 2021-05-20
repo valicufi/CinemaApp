@@ -29,9 +29,9 @@ function App() {
       
       <NavBar />
       <Container style={{marginTop: '7em'}}>
-         
-          <ActivityDashboard />
+        {/* <ActivityDashboard /> */}
       </Container>
+      <ActivityDashboard />
     </Fragment>
   );
 }

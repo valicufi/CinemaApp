@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React,{SyntheticEvent, useState} from 'react'
-import { Button, Item, Label, Segment } from 'semantic-ui-react'
+import { Button, Image, Item, Label, Segment } from 'semantic-ui-react'
 import { Activity } from '../../../app/models/activity'
 import { useStore } from '../../../app/stores/store';
 
@@ -18,36 +18,46 @@ export default observer( function ActivityList() {
 
 
     return (
-        <Segment>
-            <Item.Group divided>
-                {activitiesByYear.map(activity =>(
-                    <Item key={activity.id}>
-                        <Item.Content>
-                            <Item.Header as='a'>{activity.title}</Item.Header>
-                            <Item.Meta>{activity.year}</Item.Meta>
-                            <Item.Description>
-                                <div>{activity.description}</div>
-                            </Item.Description>
-                            <Item.Extra>
-                                <Button onClick={()=> activityStore.selectActivity(activity.id)} floated='right' content='View' color='violet' />
+        
+            <div className="movieContainer">
+                {activitiesByYear.map(eachMovie =>(
+                    <ul key={eachMovie.id} >
+                        <li  className="booking-card" >
+                           
+                        <div className="book-container">
+                        <img src={`/assets/categoryImages/${eachMovie.genre}.jpg`}/>
+                          <div className="content">
+                            <button className="btn">Watch Movie</button>
+                          </div>
+                        </div>
+                        <div className="informations-container">
+                          <h2 className="title">{eachMovie.title}</h2>
+                          <p className="sub-title">{eachMovie.description}</p>
+                          <div className="more-information">
+                          
+                                <p>
+                                    <Label basic >{eachMovie.duration} min</Label>
+                                    <Label basic content={eachMovie.quality}  />
+                                    <Label basic content={eachMovie.genre}  />
+                                    <Label basic content={eachMovie.year}  />
+                                </p>
+                            <p className="disclaimer">
+                            <Button onClick={()=> activityStore.selectActivity(eachMovie.id)} floated='left' content='View' color='violet' />
                                 <Button 
-                                    name={activity.id}
-                                    loading={loading && target === activity.id } 
-                                    onClick={(e)=> handleDelete(e,activity.id)} 
+                                    name={eachMovie.id}
+                                    loading={loading && target === eachMovie.id } 
+                                    onClick={(e)=> handleDelete(e,eachMovie.id)} 
                                     floated='right' 
                                     content='Delete'
                                     color='red' />
-                                <p>
-                                    <Label basic >{activity.duration} min</Label>
-                                    <Label basic content={activity.quality}  />
-                                    <Label basic content={activity.genre}  />
-                                </p>
-                            </Item.Extra>
-                        </Item.Content>
-                    </Item>
+                            </p>
+                            </div>
+                        </div>
+                      </li>
+                    </ul>
                 ))}
-            </Item.Group>
-        </Segment>
+            </div>
+        
     )
 })
 
