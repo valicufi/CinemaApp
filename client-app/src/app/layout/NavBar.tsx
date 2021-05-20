@@ -1,12 +1,13 @@
 import { Fragment } from 'react'
 import { Button, Container, Input, Menu } from 'semantic-ui-react'
+import { useStore } from '../stores/store'
 
 
-interface Props{
-    openForm : () => void;
-}
 
-function NavBar({openForm}:Props) {
+function NavBar() {
+
+    const {activityStore} = useStore();
+
     return (
 
        <Fragment>
@@ -21,7 +22,7 @@ function NavBar({openForm}:Props) {
     
                 <Menu.Item>
                     
-                    <Button onClick={openForm} basic color='purple' content='Create Movie' style={{marginRight: '5px'}}/>
+                    <Button onClick={() => activityStore.openForm()} basic color='purple' content='Create Movie' style={{marginRight: '5px'}}/>
                 </Menu.Item>
                 <Menu.Item>
                     <Input className='icon' icon='search' placeholder='Search for movie' />
